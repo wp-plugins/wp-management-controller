@@ -1,7 +1,7 @@
 === WP Controller ===
 Contributors: pigeonhut,rajiv-jyasha
 Donate link: 
-Tags: management,controller,
+Tags: wpcontroller,management,controller,
 Requires at least: 3.0
 Tested up to: 3.8.1
 Stable tag: 3.8.1
