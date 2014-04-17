@@ -3,10 +3,10 @@ Contributors: pigeonhut,rajiv-jyasha
 Donate link: 
 Tags: wpcontroller,management,controller,
 Requires at least: 3.0
-Tested up to: 3.8.1
-Stable tag: 3.8.1
+Tested up to: 3.9
+Stable tag: 3.9
 
-WorPress Controller application for users with more than one site - giving multiple installation management and stats overview
+WordPress Controller application for users with more than one site - giving multiple installation management and stats overview
 
 
 == License ==
@@ -21,7 +21,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-WorPress Controller application for users with more than one site - giving multiple installation management and stats overview.
+WordPress Controller application for users with more than one site - giving multiple installation management and stats overview.
 
 Ours is different to the majority out there, in that we are focused on providing the overall domain view in terms of statistics, we have already integrated:
 Google Analytics
@@ -31,6 +31,10 @@ Advanced Web Ranking reports
 Piwik Analytics
 Domain Backup to repository (COPY.COM & FTP)
 GT Metrix for Pagespeed reports
+
+To create an account for yourself, visit
+https://my.wpcontroller.co.uk/
+and register a new account, please use promocode WP39164 which will entitle you to 10 free sites with all features, or 50% discount on any plan greater than 10 domains
 
 == Installation ==
 
