@@ -38,6 +38,7 @@ class MMB_Installer extends MMB_Core
     function upgrade_wp($params){
         global $wp_filesystem;
         extract($params);
+
         $upgrader = new Core_Upgrader();
         $result = $upgrader->upgrade($current);
         if($result){
@@ -114,7 +115,7 @@ class MMB_Installer extends MMB_Core
                 include_once(ABSPATH . 'wp-includes/theme.php');
 
                 $wp_themes = null;
-                unset($wp_themes); //prevent theme data caching				
+                unset($wp_themes); //prevent theme data caching             
                 if(function_exists('wp_get_themes')){
                     $all_themes = wp_get_themes();
                     foreach ($all_themes as $theme_name => $theme_data) {
@@ -163,7 +164,6 @@ class MMB_Installer extends MMB_Core
 
 
         $params = isset($params['upgrades_all']) ? $params['upgrades_all'] : $params;
-
         $core_upgrade    = isset($params['wp_upgrade']) ? $params['wp_upgrade'] : array();
         $upgrade_plugins = isset($params['upgrade_plugins']) ? $params['upgrade_plugins'] : array();
         $upgrade_themes  = isset($params['upgrade_themes']) ? $params['upgrade_themes'] : array();
@@ -277,20 +277,22 @@ class MMB_Installer extends MMB_Core
             global $mmb_wp_version, $wp_filesystem, $wp_version;
 
             if (version_compare($wp_version, '3.1.9', '>')) {
-                // if (!class_exists('Core_Upgrader'))
-                //     include_once(ABSPATH . 'wp-admin/includes/class-wp-upgrader.php');
+                if (!class_exists('Core_Upgrader')) {
+                    include_once(ABSPATH.'wp-admin/includes/class-wp-upgrader.php');
+                }
 
-                // $core   = new Core_Upgrader();
-                // $result = $core->upgrade($current_update);
-                // $this->mmb_maintenance_mode(false);
-                // if (is_wp_error($result)) {
-                //     return array(
-                //         'error' => $this->mmb_get_error($result)
-                //     );
-                // } else
-                //     return array(
-                //         'upgraded' => ' updated'
-                //     );
+                $core   = new Core_Upgrader();
+                $result = $core->upgrade($current_update);
+                $this->mmb_maintenance_mode(false);
+                if (is_wp_error($result)) {
+                    return array(
+                        'error' => $this->mmb_get_error($result)
+                    );
+                } else {
+                    return array(
+                        'upgraded' => ' updated'
+                    );
+                }
 
             } else {
                 if (!class_exists('WP_Upgrader')) {
@@ -561,22 +563,22 @@ class MMB_Installer extends MMB_Core
                 }
             }
 
-//			if(!empty($themes)){
-//				$updatethemes = $this->upgrade_themes(array_keys($themes));
-//				if(!empty($updatethemes) && isset($updatethemes['upgraded'])){
-//					foreach ($premium_update as $key => $update) {
-//						$update = array_change_key_case($update, CASE_LOWER);
-//						foreach($updatethemes['upgraded'] as $template => $upgrade){
-//							if( isset($update['template']) && $update['template'] == $template) {
-//								if( $upgrade == 1 )
-//									unset($premium_update[$key]);
+//          if(!empty($themes)){
+//              $updatethemes = $this->upgrade_themes(array_keys($themes));
+//              if(!empty($updatethemes) && isset($updatethemes['upgraded'])){
+//                  foreach ($premium_update as $key => $update) {
+//                      $update = array_change_key_case($update, CASE_LOWER);
+//                      foreach($updatethemes['upgraded'] as $template => $upgrade){
+//                          if( isset($update['template']) && $update['template'] == $template) {
+//                              if( $upgrade == 1 )
+//                                  unset($premium_update[$key]);
 //
-//								$pr_update['themes']['upgraded'][md5($update['name'])] = $upgrade;
-//							}
-//						}
-//					}
-//				}
-//			}
+//                              $pr_update['themes']['upgraded'][md5($update['name'])] = $upgrade;
+//                          }
+//                      }
+//                  }
+//              }
+//          }
 
             //try direct install with overwrite
             if(!empty($premium_update)){
