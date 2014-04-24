@@ -4,7 +4,7 @@ Plugin Name: Wpcontroller worker
 Plugin URI: 
 Description: Manage multiple website from one 
 Author: SoHo Cloud PLC
-Version: 1.0.2
+Version: 1.0.3
 Author URI: www.sohocloud.plc.uk
 */
 
