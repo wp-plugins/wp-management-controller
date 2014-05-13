@@ -3,8 +3,8 @@ Contributors: pigeonhut,rajiv-jyasha
 Donate link: 
 Tags: wpcontroller,management,controller,
 Requires at least: 3.0
-Tested up to: 3.9
-Stable tag: 1.0.3
+Tested up to: 3.9.1
+Stable tag: 1.0.4
 
 WordPress Controller application for users with more than one site - giving multiple installation management and stats overview
 
