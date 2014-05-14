@@ -3519,11 +3519,11 @@ class MMB_Backup extends MMB_Core {
        if (!$files) {
           return array('error'=>'file not found');  
        }
+       @unlink(ABSPATH . 'mwp_temp_backup.zip');
        foreach ($files as $file) {
            if ($file->{"type"} != "file") {
                return false;//not a file
            }
-           @unlink(ABSPATH . 'mwp_temp_backup.zip');
            $temp = ABSPATH . 'mwp_temp_backup.zip';
            $fh = fopen($temp, "a+b");
            foreach ($file->{"revisions"}[0]->{"parts"} as $part) {
