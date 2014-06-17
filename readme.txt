@@ -62,11 +62,10 @@ Yes, we use SSL layers on every aspect on our dashboard system, and the plugin c
 1.Added support for COPY backups
 2.Added support for FTP backups
 3.Wordpress Update fix
-* Added support for restore backup from COPY and FTP
-* Added support for Wordfence
-* Added support for Sucuri
-
-* Added new feature to optimize database from dashboard
+4. Added support for restore backup from COPY and FTP
+5. Added support for Wordfence
+6. Added support for Sucuri
+7. Added new feature to optimize database from dashboard
 
 == Upgrade Notice ==
 de-activate existing plugin
