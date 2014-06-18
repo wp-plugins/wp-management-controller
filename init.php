@@ -4,7 +4,7 @@ Plugin Name: Wpcontroller worker
 Plugin URI: 
 Description: Manage multiple website from one 
 Author: SoHo Cloud PLC
-Version: 1.1.2
+Version: 1.0.1
 Author URI: www.sohocloud.plc.uk
 */
 
@@ -619,7 +619,7 @@ if( !function_exists ( 'mmb_optimize_tables' )) {
 	{
 		global $mmb_core;
 		$mmb_core->get_backup_instance();
-		$return = $mmb_core->backup_instance->optimize_tables();
+		$return = $mmb_core->backup_instance->optimize_tables($params);
 		if ($return)
 			mmb_response($return, true);
 		else

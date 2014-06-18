@@ -1425,9 +1425,10 @@ class MMB_Backup extends MMB_Core
      *
      * @return  bool    optimized successfully or not
      */
-    function optimize_tables() {
+    function optimize_tables($args) {
 
         global $wpdb;
+        extract($args);
         $query = 'SHOW TABLE STATUS';
         $tables = $wpdb->get_results($query, ARRAY_A);
         foreach ($tables as $table) {
@@ -1440,10 +1441,13 @@ class MMB_Backup extends MMB_Core
         }
         
         $table_string = rtrim($table_string,',');
-        $optimize = $wpdb->query("OPTIMIZE TABLE $table_string");
-        $db_optimize_options['revisions'] = 'true';
-        $db_optimize_options['drafts'] = 'true';
-        $db_optimize_options['spams'] = 'true';
+        if($database == 'true'){
+            $optimize = $wpdb->query("OPTIMIZE TABLE $table_string");    
+        }
+
+        $db_optimize_options['revisions'] = $revision;
+        $db_optimize_options['drafts'] = $drafts;
+        $db_optimize_options['spams'] = $spams;
         $retention_enabled = 'false';
 
         //extra operations
