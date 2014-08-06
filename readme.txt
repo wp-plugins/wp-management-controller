@@ -66,7 +66,7 @@ Yes, we use SSL layers on every aspect on our dashboard system, and the plugin c
 5. Added support for Wordfence
 6. Added support for Sucuri
 7. Added new feature to optimize database
-8. Add support for auto schedule dataabse optimize
+8. Add support for auto schedule database optimize
 
 == Upgrade Notice ==
 de-activate existing plugin
