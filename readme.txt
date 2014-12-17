@@ -3,7 +3,7 @@ Contributors: pigeonhut,rajiv-jyasha
 Donate link: 
 Tags: wpcontroller,management,controller,
 Requires at least: 3.0
-Tested up to: 4.0
+Tested up to: 4.1
 Stable tag: 1.1.5
 
 
@@ -69,7 +69,7 @@ Yes, we use SSL layers on every aspect on our dashboard system, and the plugin c
 7. Added new feature to optimize database
 8. Add support for auto schedule database optimize
 9. Added support for auto schedule site backup
-10. Added support for wordpress 4.0
+10. Added support for wordpress 4.1
 
 == Upgrade Notice ==
 de-activate existing plugin
