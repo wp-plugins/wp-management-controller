@@ -58,6 +58,7 @@ Yes, we use SSL layers on every aspect on our dashboard system, and the plugin c
 2. 
 3.
 4.
+5.
 == Changelog ==
 
 1.Added support for COPY backups
