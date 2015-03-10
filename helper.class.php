@@ -308,7 +308,7 @@ class MMB_Helper {
         return false;
     }
 
-    function authenticate_message($data = false, $signature = false, $message_id = false) {
+    function authenticate_message($data = false, $signature = false, $message_id = false) {               
         if (!$data && !$signature) {
             return array(
                 'error' => 'Authentication failed.'
@@ -342,7 +342,7 @@ class MMB_Helper {
         //         );
         //     }
         // } else 
-        if ($this->get_random_signature()) {
+        if ($this->get_random_signature()) {           
             if (md5($data . $this->get_random_signature()) === $signature) {
                 $message_id = $this->set_worker_message_id($message_id);
                 return true;
@@ -560,9 +560,9 @@ class MMB_Helper {
         else if ($param == 'without_content')
             wp_safe_redirect(admin_url('admin.php?page=toplevel_page_itsec_settings#itsec_tweaks_server_disable_unused_author_pages'));
         else if ($param == 'should_not_wp')
-            wp_safe_redirect(admin_url('admin.php?page=toplevel_page_itsec_advanced#itsec_change_table_prefix'));
+            wp_safe_redirect(admin_url('admin.php?page=toplevel_page_itsec_advanced#itsec_change_table_prefix'));        
         else if ($param == 'detected_file_changes')
-            wp_safe_redirect(admin_url('admin.php?page=toplevel_page_itsec_settings#itsec_file_change_enabled')); // Low priority strats here
+            wp_safe_redirect(admin_url('admin.php?page=toplevel_page_itsec_settings#itsec_file_change_enabled'));// Low priority strats here
         else if ($param == 'base_user_features')
             wp_safe_redirect(admin_url('admin.php?page=toplevel_page_itsec_settings#itsec_ban_users_enabled'));
         else if ($param == 'secure_connection')
@@ -590,7 +590,7 @@ class MMB_Helper {
         else if ($param == 'rename_wpcontent')
             wp_safe_redirect(admin_url('admin.php?page=toplevel_page_itsec_advanced#itsec_enable_content_dir'));
         else if ($param == 'not_logging')
-            wp_safe_redirect(admin_url('admin.php?page=toplevel_page_itsec_pro#itsec_user_logging_enabled'));
+            wp_safe_redirect(admin_url('admin.php?page=toplevel_page_itsec_pro#itsec_user_logging_enabled'));        
     }
 
 }

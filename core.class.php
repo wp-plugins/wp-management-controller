@@ -141,6 +141,7 @@ class MMB_Core extends MMB_Helper {
             'buddy_backup_schedule' => 'mmb_buddy_backup_schedule',
             'buddy_backup_deleteschedule' => 'mmb_buddy_backup_deleteschedule',
             'add_piwik_code' => 'mmb_add_piwik_code',
+            'verify_itheme_security_installed' => 'mmb_itheme_security',
         );
         $mwp_worker_brand = get_option("mwp_worker_brand");
         //!$mwp_worker_brand['hide_managed_remotely']
@@ -797,7 +798,6 @@ EOF;
                 $signature = base64_decode($_GET['signature']);
                 //$signature  = ($_GET['signature']);
                 $message_id = trim($_GET['message_id']);
-
                 $auth = $this->authenticate_message($where . $message_id, $signature, $message_id);
                 if ($auth === true) {
 
@@ -810,13 +810,11 @@ EOF;
                     $siteurl = function_exists('get_site_option') ? get_site_option('siteurl') : get_option('siteurl');
                     $user = $this->mmb_get_user_info($username);
                     wp_set_current_user($user->ID);
-
                     if (!defined('COOKIEHASH') || (isset($this->mmb_multisite) && $this->mmb_multisite))
                         wp_cookie_constants();
 
                     wp_set_auth_cookie($user->ID);
                     @mmb_worker_header();
-
                     if ((isset($this->mmb_multisite) && $this->mmb_multisite ) || isset($_REQUEST['mwpredirect'])) {
                         if (function_exists('wp_safe_redirect') && function_exists('admin_url')) {
                             wp_safe_redirect(admin_url($where));
@@ -826,14 +824,14 @@ EOF;
                 } else {
                     wp_die($auth['error']);
                 }
-            } elseif (is_user_logged_in()) {
+            } elseif (is_user_logged_in()) {                
                 @mmb_worker_header();
                 if (isset($_REQUEST['mwpredirect'])) {
                     if (function_exists('wp_safe_redirect') && function_exists('admin_url')) {
                         wp_safe_redirect(admin_url($where));
                         exit();
                     }
-                } else if (isset($itheme_section) && $itheme_section != '0') {
+                } else if (isset($itheme_section) && $itheme_section != '0') {                    
                     $this->itheme_redirect($itheme_section);
                     exit;
                 }
