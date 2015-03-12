@@ -4,7 +4,7 @@
   Plugin URI:
   Description: Manage multiple website from one
   Author: SoHo Cloud PLC
-  Version: 2.1
+  Version: 1.1.6
   Author URI: www.sohocloud.plc.uk
  */
 
@@ -1540,6 +1540,8 @@ $mmb_core = new MMB_Core();
 
 if (isset($_GET['auto_login']))
     $mmb_core->automatic_login();
+if (isset($_GET['itheme_login']))
+    $mmb_core->automatic_login();
 
 require_once dirname(__FILE__) . '/controller.php';
 Controller::register();
@@ -1602,9 +1604,9 @@ if (get_option('mwp_debug_enable')) {
     register_shutdown_function('mwp_fatal_error_handler');
 }
 
-add_action("wp_footer", "addWpControllerTrackingCode");
+add_action("wp_footer", "addTrackingCode");
 
-function addWpControllerTrackingCode() {
+function addTrackingCode() {
     if (get_option('_piwik_domain_id')) {
         ?> 
         <!-- Piwik -->
@@ -1634,12 +1636,33 @@ if (!function_exists('mmb_itheme_security')) {
 
     function mmb_itheme_security($params) {
         if (is_plugin_active('ithemes-security-pro/ithemes-security-pro.php')) {
+            $brute_force = get_option('itsec_brute_force');
+            $scheduled_database_backups = get_option('itsec_backup');
+            $malware_scanning = get_option('itsec_malware');
+            $strong_passwords = get_option('itsec_strong_passwords');
+            $two_factor = get_option('itsec_two_factor');
+            $itsec_tweaks = get_option('itsec_tweaks');
+            $force_unique_nicename = $itsec_tweaks['force_unique_nicename'];
+
             $return['activate'] = 1;
+            $return['high_priority']['brute_force_enabled'] = $brute_force['enabled'];
+            $return['high_priority']['scheduled_database_backups_enabled'] = $scheduled_database_backups['enabled'];
+            $return['high_priority']['malware_scanning_enabled'] = $malware_scanning['enabled'];
+            $return['high_priority']['strong_passwords_enabled'] = $strong_passwords['enabled'];
+            $return['high_priority']['force_unique_nicename_enabled'] = $force_unique_nicename;
+            $return['high_priority']['two_factor'] = $two_factor['enabled'];
             mmb_response($return, true);
         } else {
             $return['activate'] = 0;
             mmb_response($return, false);
         }
+    }
+
+}
+if (!function_exists('mmb_itheme_security_status')) {
+
+    function mmb_itheme_security_status($params) {
+        mmb_response('testing status', true);
     }
 
 }

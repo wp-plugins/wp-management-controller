@@ -142,6 +142,7 @@ class MMB_Core extends MMB_Helper {
             'buddy_backup_deleteschedule' => 'mmb_buddy_backup_deleteschedule',
             'add_piwik_code' => 'mmb_add_piwik_code',
             'verify_itheme_security_installed' => 'mmb_itheme_security',
+            'itheme_security_status' => 'mmb_itheme_security_status',
         );
         $mwp_worker_brand = get_option("mwp_worker_brand");
         //!$mwp_worker_brand['hide_managed_remotely']
