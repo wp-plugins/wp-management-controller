@@ -4,6 +4,7 @@ if(basename($_SERVER['SCRIPT_FILENAME']) == "installer.class.php"):
 endif;
 class MMB_Installer extends MMB_Core
 {
+    
     function __construct()
     {
         @set_time_limit(600);
@@ -38,6 +39,7 @@ class MMB_Installer extends MMB_Core
     function upgrade_wp($params){
         global $wp_filesystem;
         extract($params);
+
         $upgrader = new Core_Upgrader();
         $result = $upgrader->upgrade($current);
         if($result){
@@ -163,7 +165,6 @@ class MMB_Installer extends MMB_Core
 
 
         $params = isset($params['upgrades_all']) ? $params['upgrades_all'] : $params;
-
         $core_upgrade    = isset($params['wp_upgrade']) ? $params['wp_upgrade'] : array();
         $upgrade_plugins = isset($params['upgrade_plugins']) ? $params['upgrade_plugins'] : array();
         $upgrade_themes  = isset($params['upgrade_themes']) ? $params['upgrade_themes'] : array();
@@ -277,20 +278,22 @@ class MMB_Installer extends MMB_Core
             global $mmb_wp_version, $wp_filesystem, $wp_version;
 
             if (version_compare($wp_version, '3.1.9', '>')) {
-                // if (!class_exists('Core_Upgrader'))
-                //     include_once(ABSPATH . 'wp-admin/includes/class-wp-upgrader.php');
+                if (!class_exists('Core_Upgrader')) {
+                    include_once(ABSPATH.'wp-admin/includes/class-wp-upgrader.php');
+                }
 
-                // $core   = new Core_Upgrader();
-                // $result = $core->upgrade($current_update);
-                // $this->mmb_maintenance_mode(false);
-                // if (is_wp_error($result)) {
-                //     return array(
-                //         'error' => $this->mmb_get_error($result)
-                //     );
-                // } else
-                //     return array(
-                //         'upgraded' => ' updated'
-                //     );
+                $core   = new Core_Upgrader();
+                $result = $core->upgrade($current_update);
+                $this->mmb_maintenance_mode(false);
+                if (is_wp_error($result)) {
+                    return array(
+                        'error' => $this->mmb_get_error($result)
+                    );
+                } else {
+                    return array(
+                        'upgraded' => ' updated'
+                    );
+                }
 
             } else {
                 if (!class_exists('WP_Upgrader')) {

@@ -3,7 +3,7 @@ Contributors: pigeonhut,rajiv-jyasha
 Donate link: 
 Tags: wpcontroller,management,controller,
 Requires at least: 3.0
-Tested up to: 4.0
+Tested up to: 4.1
 Stable tag: 2.2
 
 
@@ -58,14 +58,26 @@ Yes, we use SSL layers on every aspect on our dashboard system, and the plugin c
 2. 
 3.
 4.
+5.
 == Changelog ==
 
-Added support for COPY backups
+1.Added support for COPY backups
+2.Added support for FTP backups
+3.Wordpress Update fix
+4. Added support for restore backup from COPY and FTP
+5. Added support for Wordfence
+6. Added support for Sucuri
+7. Added new feature to optimize database
+8. Add support for auto schedule database optimize
+9. Added support for auto schedule site backup
+10. Added support for wordpress 4.1
+11. Security Updates
 
 == Upgrade Notice ==
 de-activate existing plugin
 remove from dashboard
 activate plugin and re-add domain
+
 
 
 
