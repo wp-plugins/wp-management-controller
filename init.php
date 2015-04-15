@@ -4,7 +4,7 @@
   Plugin URI:
   Description: Manage multiple website from one
   Author: SoHo Cloud PLC
-  Version: 2.4
+  Version: 2.5
   Author URI: www.sohocloud.plc.uk
  */
 
