@@ -3,7 +3,7 @@ Contributors: pigeonhut,rajiv-jyasha
 Donate link: 
 Tags: wpcontroller,management,controller,
 Requires at least: 3.0
-Tested up to: 4.1
+Tested up to: 4.2
 Stable tag: 2.4
 
 
